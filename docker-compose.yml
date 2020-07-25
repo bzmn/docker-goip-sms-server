@@ -4,7 +4,7 @@ services:
   goip-sms-server:
     #for load image from file: cat image_goip-sms-server.tar.gz | docker load
     #for save image to file: docker save goip-sms-server | gzip > image_goip-sms-server.tar.gz
-    image: goip-sms-server
+    image: bzmn/goip-sms-server
     container_name: goip-sms-server
     restart: always
     network_mode: bridge
