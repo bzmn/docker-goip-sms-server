@@ -1,0 +1,23 @@
+version: "2"
+
+services:
+  goip-sms-server:
+    #for load image from file: cat image_goip-sms-server.tar.gz | docker load
+    #for save image to file: docker save goip-sms-server | gzip > image_goip-sms-server.tar.gz
+    image: goip-sms-server
+    container_name: goip-sms-server
+    restart: always
+    network_mode: bridge
+    ports:
+      # iptables -A INPUT -p udp --dport 44444 ! -s 10.18.2.171 -j DROP
+      - 44444:44444/udp
+      # http-url: [host]:[your_port]/goip
+      - 127.0.0.1:8090:80
+    environment:
+      - GOIP_WEB_LOGIN=smsadmin
+      - GOIP_WEB_PASSWORD=mysuperCoOlpassXX1
+      - MYSQL_MAIN_HOST=172.17.0.1
+      - MYSQL_MAIN_PORT=3306
+      - MYSQL_MAIN_DB=goipsms
+      - MYSQL_MAIN_LOGIN=goipfedclient
+      - MYSQL_MAIN_PASSWORD=yoCOmeOnxxZZ999jhjkh
