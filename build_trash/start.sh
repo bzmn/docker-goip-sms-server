@@ -1,3 +1,6 @@
+echo "!!!!!set timzone"
+ln -sf /usr/share/zoneinfo/$MYTIMEZONE /etc/localtime
+
 echo "!!!!!prepare mysql config"
 service mysqld start
 sleep 1

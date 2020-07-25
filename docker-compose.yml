@@ -2,8 +2,6 @@ version: "2"
 
 services:
   goip-sms-server:
-    #for load image from file: cat image_goip-sms-server.tar.gz | docker load
-    #for save image to file: docker save goip-sms-server | gzip > image_goip-sms-server.tar.gz
     image: bzmn/goip-sms-server
     container_name: goip-sms-server
     restart: always
@@ -14,6 +12,7 @@ services:
       # http-url: [host]:[your_port]/goip
       - 127.0.0.1:8090:80
     environment:
+      - MYTIMEZONE=Asia/Novosibirsk
       - GOIP_WEB_LOGIN=smsadmin
       - GOIP_WEB_PASSWORD=mysuperCoOlpassXX1
       - MYSQL_MAIN_HOST=172.17.0.1
