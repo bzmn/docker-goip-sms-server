@@ -31,5 +31,8 @@ $mysql_run_string "UPDATE user SET username=\"$GOIP_WEB_LOGIN\" WHERE id=1"
 echo "!!!!!run"
 /usr/local/goip/run_goipcron
 
+echo "!!!!!make root host to goip dir"
+sed -i 's/DocumentRoot "\/var\/www\/html"/DocumentRoot "\/usr\/local\/goip"/' /etc/httpd/conf/httpd.conf
+
 service httpd start
 tail -f /dev/null

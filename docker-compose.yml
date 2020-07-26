@@ -7,10 +7,8 @@ services:
     restart: always
     network_mode: bridge
     ports:
-      # iptables -A INPUT -p udp --dport 44444 ! -s 10.18.2.171 -j DROP
       - 44444:44444/udp
-      # http-url: [host]:[your_port]/goip
-      - 127.0.0.1:8090:80
+      - 80
     environment:
       - MYTIMEZONE=Asia/Novosibirsk
       - GOIP_WEB_LOGIN=smsadmin
