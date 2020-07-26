@@ -24,8 +24,9 @@ mysql < /goip_install/goip/goipinit_mod_fed_final.sql
 
 echo "!!!!!set our login and password for goip web admin"
 GOIP_WEB_PASSWORD_MD5=`php -r "print(md5($GOIP_WEB_PASSWORD));"`
-mysql -u$MYSQL_MAIN_LOGIN -p$MYSQL_MAIN_PASSWORD -h$MYSQL_MAIN_HOST --port=$MYSQL_MAIN_PORT --database $MYSQL_MAIN_DB -e "UPDATE user SET password=\"$GOIP_WEB_PASSWORD_MD5\" WHERE username='root'"
-mysql --database goip -e "UPDATE user SET username=\"$GOIP_WEB_LOGIN\" WHERE username='root'"
+mysql_run_string="mysql -u$MYSQL_MAIN_LOGIN -p$MYSQL_MAIN_PASSWORD -h$MYSQL_MAIN_HOST --port=$MYSQL_MAIN_PORT --database $MYSQL_MAIN_DB -e "
+$mysql_run_string "UPDATE user SET password=\"$GOIP_WEB_PASSWORD_MD5\" WHERE id=1"
+$mysql_run_string "UPDATE user SET username=\"$GOIP_WEB_LOGIN\" WHERE id=1"
 
 echo "!!!!!run"
 /usr/local/goip/run_goipcron
